@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Hero } from './components/Hero';
 import { MaterialShowcaseCarousel } from './components/MaterialShowcaseCarousel';
+import { InfiniteCarousels } from './components/InfiniteCarousels';
 import { ModulesSection } from './components/ModulesSection';
 import { WhyAtlasSection } from './components/WhyAtlasSection';
 import { BonusesSection } from './components/BonusesSection';
@@ -52,6 +53,9 @@ export default function App() {
 
         {/* 2ª Seção — Carrossel Estático com Amostras Reais dos Materiais Por Dentro */}
         <MaterialShowcaseCarousel onCtaClick={scrollToOffer} />
+
+        {/* Dois Carrosséis Infinitos com Amostras Contínuas */}
+        <InfiniteCarousels />
 
         {/* 3ª Seção — O Que Você Vai Receber (7 Módulos + Card Destaque) */}
         <ModulesSection 
