@@ -81,12 +81,13 @@ export const WhyAtlasSection: React.FC<WhyAtlasSectionProps> = ({ onCtaClick }) 
           {cards.map((card, idx) => (
             <div
               key={idx}
-              className={`bg-white rounded-2xl p-7 border border-slate-200/90 shadow-xs hover:shadow-md hover:border-blue-300 transition-all flex flex-col justify-between ${
+              className={`bg-white rounded-2xl p-7 border border-slate-200/90 shadow-xs hover:shadow-md hover:border-blue-300 transition-all flex flex-col justify-between text-center items-center ${
                 idx === 5 ? 'md:col-span-2 lg:col-span-1' : ''
               }`}
             >
-              <div>
-                <div className="w-12 h-12 rounded-xl bg-[#F5F8FC] border border-slate-100 flex items-center justify-center mb-5 shadow-2xs">
+              <div className="flex flex-col items-center text-center w-full">
+                {/* Centered Icon Container */}
+                <div className="w-14 h-14 rounded-2xl bg-[#F5F8FC] border border-slate-200 flex items-center justify-center mb-5 shadow-xs mx-auto">
                   {card.icon}
                 </div>
                 <h3 className="text-xl font-bold text-[#071E4B] mb-2.5">
@@ -97,11 +98,11 @@ export const WhyAtlasSection: React.FC<WhyAtlasSectionProps> = ({ onCtaClick }) 
                 </p>
 
                 {card.comparisons && (
-                  <div className="mt-4 pt-3 border-t border-slate-100">
-                    <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block mb-2">
+                  <div className="mt-4 pt-3 border-t border-slate-100 w-full">
+                    <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block mb-2 text-center">
                       Diferenciais abordados:
                     </span>
-                    <div className="flex flex-wrap gap-1.5">
+                    <div className="flex flex-wrap justify-center gap-1.5">
                       {card.comparisons.map((comp, cIdx) => (
                         <span
                           key={cIdx}
@@ -115,7 +116,7 @@ export const WhyAtlasSection: React.FC<WhyAtlasSectionProps> = ({ onCtaClick }) 
                 )}
               </div>
 
-              <div className="mt-6 pt-4 border-t border-slate-100 flex items-center text-xs font-bold text-[#0867D7]">
+              <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-center text-xs font-bold text-[#0867D7] w-full">
                 <span>Benefício garantido</span>
               </div>
             </div>

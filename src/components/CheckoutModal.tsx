@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   X, 
   Lock, 
@@ -7,17 +7,23 @@ import {
   CreditCard, 
   ShieldCheck, 
   Sparkles, 
-  Download,
   Copy,
-  Check
+  Check,
+  Gift
 } from 'lucide-react';
 
 interface CheckoutModalProps {
   isOpen: boolean;
   onClose: () => void;
+  initialPlan?: 'basic' | 'complete';
 }
 
-export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose }) => {
+export const CheckoutModal: React.FC<CheckoutModalProps> = ({ 
+  isOpen, 
+  onClose,
+  initialPlan = 'complete'
+}) => {
+  const [selectedPlan, setSelectedPlan] = useState<'basic' | 'complete'>(initialPlan);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [paymentMethod, setPaymentMethod] = useState<'pix' | 'card'>('pix');
@@ -25,10 +31,26 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose })
   const [copiedPix, setCopiedPix] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
 
+  // Sync state if initialPlan prop changes when modal opens
+  useEffect(() => {
+    if (isOpen) {
+      setSelectedPlan(initialPlan);
+      setIsSuccess(false);
+      setErrorMsg('');
+    }
+  }, [isOpen, initialPlan]);
+
   if (!isOpen) return null;
 
+  const isBasic = selectedPlan === 'basic';
+  const priceDisplay = isBasic ? 'R$ 10,00' : 'R$ 19,90';
+  const planTitle = isBasic ? 'Plano Básico (Atlas 50 Escalas)' : 'Pacote Completo VIP (Atlas + 3 Bônus)';
+
   const handleCopyPix = () => {
-    navigator.clipboard.writeText('00020126580014br.gov.bcb.pix0136atlas-visual-enfermagem-50-escalas@pagamento.com.br520400005303986540537.005802BR5925ATLAS VISUAL ESCALAS6009SAO PAULO62070503***6304E8A2');
+    const pixCode = isBasic 
+      ? '00020126580014br.gov.bcb.pix0136atlas-visual-10reais@pagamento.com.br520400005303986540510.005802BR5925ATLAS VISUAL ESCALAS6009SAO PAULO62070503***6304E8A2'
+      : '00020126580014br.gov.bcb.pix0136atlas-visual-19reais@pagamento.com.br520400005303986540519.905802BR5925ATLAS VISUAL ESCALAS6009SAO PAULO62070503***6304E8A2';
+    navigator.clipboard.writeText(pixCode);
     setCopiedPix(true);
     setTimeout(() => setCopiedPix(false), 2500);
   };
@@ -64,7 +86,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose })
               Atlas Visual — 50 Escalas Clínicas
             </h3>
             <p className="text-xs text-blue-100 mt-0.5">
-              Receba os 7 módulos completos + 3 bônus exclusivos
+              {isBasic ? 'Acesso ao guia com as 50 escalas' : 'Acesso aos 7 módulos + 3 bônus exclusivos inclusos'}
             </p>
           </div>
 
@@ -80,16 +102,50 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose })
         {!isSuccess ? (
           <form onSubmit={handleSubmit} className="p-6 space-y-5 text-slate-700">
             
+            {/* Plan Selector Tabs */}
+            <div>
+              <label className="block text-xs font-bold text-slate-600 mb-1.5">
+                Plano selecionado:
+              </label>
+              <div className="grid grid-cols-2 gap-2 p-1 bg-slate-100 rounded-2xl border border-slate-200">
+                <button
+                  type="button"
+                  onClick={() => setSelectedPlan('basic')}
+                  className={`py-2 px-3 rounded-xl text-xs font-bold transition-all cursor-pointer text-center ${
+                    isBasic
+                      ? 'bg-white text-[#071E4B] shadow-sm border border-slate-200'
+                      : 'text-slate-500 hover:text-slate-800'
+                  }`}
+                >
+                  <span className="block">Plano Básico</span>
+                  <span className="text-sm font-black text-[#0867D7]">R$ 10,00</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setSelectedPlan('complete')}
+                  className={`py-2 px-3 rounded-xl text-xs font-bold transition-all cursor-pointer text-center relative ${
+                    !isBasic
+                      ? 'bg-[#16C784] text-white shadow-sm'
+                      : 'text-slate-500 hover:text-slate-800'
+                  }`}
+                >
+                  <span className="block">Completo VIP (+ Bônus)</span>
+                  <span className="text-sm font-black">R$ 19,90</span>
+                </button>
+              </div>
+            </div>
+
             {/* Price & Summary Tag */}
             <div className="p-4 rounded-2xl bg-[#F5F8FC] border border-slate-200 flex items-center justify-between">
               <div>
-                <span className="text-xs text-slate-500 block">Total a pagar:</span>
-                <span className="text-2xl font-black text-[#071E4B]">R$ 37,00</span>
+                <span className="text-xs text-slate-500 block">Total a pagar ({planTitle}):</span>
+                <span className="text-3xl font-black text-[#071E4B]">{priceDisplay}</span>
                 <span className="text-[11px] text-slate-500 block">Pagamento único • Sem mensalidade</span>
               </div>
               <div className="text-right">
                 <span className="text-[11px] text-emerald-700 bg-emerald-100 font-bold px-2.5 py-1 rounded-full">
-                  Economia de R$ 60,00
+                  {isBasic ? 'Economia de R$ 19,90' : 'Economia de R$ 77,10'}
                 </span>
               </div>
             </div>
@@ -130,7 +186,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose })
                   required
                 />
                 <span className="text-[11px] text-slate-400 block mt-1">
-                  O link de acesso ao PDF em alta resolução e aos bônus será enviado para este e-mail.
+                  O link de acesso ao PDF e aos materiais será enviado imediatamente para este e-mail.
                 </span>
               </div>
             </div>
@@ -166,14 +222,16 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose })
                 >
                   <CreditCard className="w-5 h-5 text-[#0867D7]" />
                   <span className="text-xs">Cartão de Crédito</span>
-                  <span className="text-[10px] text-slate-500 font-semibold">Até 4x de R$ 9,99</span>
+                  <span className="text-[10px] text-slate-500 font-semibold">
+                    {isBasic ? 'À vista no cartão' : 'Em até 2x no cartão'}
+                  </span>
                 </button>
               </div>
             </div>
 
             {paymentMethod === 'pix' && (
               <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600 flex items-center justify-between">
-                <span>Chave PIX gerada automaticamente na próxima etapa</span>
+                <span>Chave PIX gerada automaticamente</span>
                 <button
                   type="button"
                   onClick={handleCopyPix}
@@ -190,13 +248,13 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose })
               type="submit"
               className="w-full py-4 rounded-xl bg-[#16C784] hover:bg-[#13b175] text-white font-extrabold text-base shadow-lg hover:shadow-emerald-200 transition-all cursor-pointer text-center"
             >
-              LIBERAR MEU ACESSO AGORA (R$ 37,00) →
+              LIBERAR MEU ACESSO AGORA ({priceDisplay}) →
             </button>
 
             {/* Guarantee footer */}
             <div className="flex items-center justify-center gap-2 text-[11px] text-slate-500 font-medium">
               <ShieldCheck className="w-4 h-4 text-[#16C784]" />
-              <span>Garantia de 7 dias com reembolso total</span>
+              <span>Garantia de 7 dias com reembolso integral</span>
             </div>
 
           </form>
@@ -211,7 +269,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose })
                 Parabéns, {name}!
               </h4>
               <p className="text-sm text-slate-600 leading-relaxed">
-                Seu pedido do <strong>Atlas Visual — 50 Escalas e Escores Clínicos</strong> foi registrado com sucesso!
+                Seu pedido do <strong>{planTitle}</strong> foi registrado com sucesso!
               </p>
             </div>
 
@@ -221,9 +279,13 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose })
                 <span>Instruções enviadas para: {email}</span>
               </div>
               <p>✓ Link de acesso para download do PDF com as 50 escalas liberado.</p>
-              <p>✓ Mapa Rápido de Decisão anexado.</p>
-              <p>✓ 50 Casos Clínicos Comentados prontos para consulta.</p>
-              <p>✓ Coleção de Flashcards liberada no seu painel.</p>
+              {!isBasic && (
+                <>
+                  <p>✓ Mapa Rápido “Qual Escala Utilizar?” anexado.</p>
+                  <p>✓ 50 Casos Clínicos Comentados prontos para consulta.</p>
+                  <p>✓ Coleção de Flashcards liberada no seu painel.</p>
+                </>
+              )}
             </div>
 
             <div className="pt-2">
