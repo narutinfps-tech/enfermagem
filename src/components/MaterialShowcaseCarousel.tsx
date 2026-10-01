@@ -61,20 +61,6 @@ export const MaterialShowcaseCarousel: React.FC<MaterialShowcaseCarouselProps> =
     }
   ];
 
-  const handleScroll = (direction: 'left' | 'right') => {
-    if (!scrollContainerRef.current) return;
-    const container = scrollContainerRef.current;
-    const cardWidth = container.firstElementChild ? (container.firstElementChild as HTMLElement).offsetWidth + 20 : 300;
-    
-    if (direction === 'left') {
-      container.scrollBy({ left: -cardWidth, behavior: 'smooth' });
-      setCurrentIndex((prev) => Math.max(0, prev - 1));
-    } else {
-      container.scrollBy({ left: cardWidth, behavior: 'smooth' });
-      setCurrentIndex((prev) => Math.min(samples.length - 1, prev + 1));
-    }
-  };
-
   const scrollToIndex = (index: number) => {
     if (!scrollContainerRef.current) return;
     const container = scrollContainerRef.current;
@@ -114,24 +100,6 @@ export const MaterialShowcaseCarousel: React.FC<MaterialShowcaseCarouselProps> =
           <p className="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto">
             Amostras reais das páginas do Atlas Visual de Escalas Clínicas. Clique em qualquer imagem para ampliar.
           </p>
-        </div>
-
-        {/* Carousel Navigation Arrows */}
-        <div className="flex items-center justify-end gap-2 mb-4">
-          <button
-            onClick={() => handleScroll('left')}
-            aria-label="Ver imagem anterior"
-            className="w-10 h-10 rounded-full bg-white border border-slate-200 text-slate-700 hover:bg-[#0867D7] hover:text-white hover:border-[#0867D7] flex items-center justify-center shadow-xs transition-all cursor-pointer"
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-          <button
-            onClick={() => handleScroll('right')}
-            aria-label="Ver próxima imagem"
-            className="w-10 h-10 rounded-full bg-white border border-slate-200 text-slate-700 hover:bg-[#0867D7] hover:text-white hover:border-[#0867D7] flex items-center justify-center shadow-xs transition-all cursor-pointer"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
         </div>
 
         {/* Static Carousel with ONLY the images (No frames, no borders, no footers) */}
