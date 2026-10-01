@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --color-brand-navy: #071E4B;
+  --color-brand-blue: #0867D7;
+  --color-brand-light-blue: #37B7FF;
+  --color-brand-purple: #7347E8;
+  --color-brand-cyan: #1ED5E7;
+  --color-brand-green: #16C784;
+  --color-brand-bg-light: #F5F8FC;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+
+@keyframes floatUpDown {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+.animate-float {
+  animation: floatUpDown 4s ease-in-out infinite;
+  will-change: transform;
+}
+

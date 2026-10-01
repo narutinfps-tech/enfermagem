@@ -1,0 +1,6 @@
+{
+  "name": "Atlas Visual — 50 Escalas e Escores Clínicos",
+  "description": "Aprenda e revise 50 das principais escalas e escores clínicos através de mapas visuais, casos clínicos e materiais organizados para estudantes de Enfermagem e Saúde.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
