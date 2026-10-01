@@ -17,47 +17,29 @@ export const GuaranteeSection: React.FC<GuaranteeSectionProps> = ({ onCtaClick }
 
           <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
             
-            {/* Visual Shield with number 7 */}
-            <div className="md:col-span-4 flex justify-center">
+            {/* Visual Guarantee Badge (Official Seal with Transparent Background) */}
+            <div className="md:col-span-5 flex justify-center items-center">
               <div className="relative group">
                 
-                {/* Outer concentric rings */}
-                <div className="absolute -inset-4 rounded-full bg-gradient-to-tr from-[#0867D7]/20 via-[#1ED5E7]/20 to-[#16C784]/20 blur-xl opacity-75 group-hover:opacity-100 transition-opacity" />
+                {/* Outer concentric rings & subtle golden/emerald glow */}
+                <div className="absolute -inset-4 rounded-full bg-gradient-to-tr from-amber-400/25 via-[#16C784]/20 to-[#0867D7]/20 blur-2xl opacity-75 group-hover:opacity-100 transition-opacity duration-500" />
                 
-                {/* SVG Shield with Number 7 */}
-                <div className="relative w-44 h-48 sm:w-52 sm:h-56 bg-gradient-to-b from-[#071E4B] via-[#0867D7] to-[#071E4B] rounded-[2.5rem] p-1 shadow-2xl flex flex-col items-center justify-center text-white border-2 border-white/30">
-                  <div className="w-full h-full rounded-[2.3rem] border border-blue-300/30 flex flex-col items-center justify-center p-4 text-center">
-                    
-                    {/* Top text */}
-                    <span className="text-[10px] sm:text-xs font-black tracking-widest text-[#1ED5E7] uppercase mb-1">
-                      GARANTIA
-                    </span>
-
-                    {/* Central 7 */}
-                    <div className="relative my-0.5">
-                      <span className="text-6xl sm:text-7xl font-black tracking-tighter text-white drop-shadow-md font-sans">
-                        7
-                      </span>
-                    </div>
-
-                    {/* Bottom label */}
-                    <span className="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-slate-100">
-                      DIAS DE RISCO ZERO
-                    </span>
-
-                    {/* Checkmark icon */}
-                    <div className="mt-2 w-6 h-6 rounded-full bg-[#16C784] flex items-center justify-center text-white">
-                      <ShieldCheck className="w-4 h-4" />
-                    </div>
-
-                  </div>
-                </div>
+                {/* Transparent Guarantee Badge Image */}
+                <picture>
+                  <source srcSet="/src/assets/images/guarantee_badge.webp" type="image/webp" />
+                  <img
+                    src="/src/assets/images/guarantee_badge.png"
+                    alt="Selo Oficial de Garantia 7 Dias Incondicional"
+                    className="relative w-56 h-56 sm:w-64 sm:h-64 lg:w-72 lg:h-72 object-contain drop-shadow-2xl transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </picture>
 
               </div>
             </div>
 
             {/* Content Text */}
-            <div className="md:col-span-8">
+            <div className="md:col-span-7">
               
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-[#16C784] text-xs font-bold uppercase tracking-wider mb-4">
                 <ShieldCheck className="w-4 h-4" />
