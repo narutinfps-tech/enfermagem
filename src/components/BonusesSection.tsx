@@ -1,7 +1,9 @@
 import React from 'react';
 import { Gift, CheckCircle2, ArrowRight, Sparkles, BookOpen, Layers } from 'lucide-react';
 import { BONUSES_DATA } from '../data/scalesData';
-import bonusMockup from '../assets/images/bonus_bundles_mockup_1790816456210.jpg';
+import bonus1Cover from '../assets/images/bonus_1_cover.webp';
+import bonus2Cover from '../assets/images/bonus_2_cover.webp';
+import bonus3Cover from '../assets/images/bonus_3_cover.webp';
 
 interface BonusesSectionProps {
   onCtaClick: () => void;
@@ -26,47 +28,6 @@ export const BonusesSection: React.FC<BonusesSectionProps> = ({ onCtaClick }) =>
           </p>
         </div>
 
-        {/* Featured Bonus Banner / Mockup Showcase */}
-        <div className="mb-14 rounded-3xl overflow-hidden border border-slate-200 shadow-lg bg-gradient-to-r from-slate-900 via-[#071E4B] to-[#0867D7] p-6 sm:p-10 text-white">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-7">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 text-xs font-bold uppercase tracking-wider mb-4">
-                <Sparkles className="w-3.5 h-3.5" />
-                Pacote de Bônus 100% Gratuito
-              </div>
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-white mb-3">
-                Mais de R$ 52,00 em materiais extras incluídos hoje
-              </h3>
-              <p className="text-sm sm:text-base text-blue-100 font-normal mb-6 leading-relaxed">
-                Você receberá o Mapa de Consulta Rápida, o Caderno de 50 Casos Clínicos Comentados e o Baralho de Flashcards Digitais sem pagar nenhum centavo a mais por isso.
-              </p>
-              <div className="flex flex-wrap items-center gap-4 text-xs sm:text-sm font-semibold text-emerald-300">
-                <span className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400" /> Formato Digital Imediato
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400" /> Prontos para Impressão
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400" /> Acesso Vitalício ao PDF
-                </span>
-              </div>
-            </div>
-            
-            <div className="lg:col-span-5">
-              <div className="rounded-2xl overflow-hidden border-2 border-white/20 shadow-xl bg-slate-800">
-                <img
-                  src={bonusMockup}
-                  alt="3 Bônus Exclusivos do Atlas Visual de Escalas Clínicas"
-                  className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500"
-                  referrerPolicy="no-referrer"
-                  loading="lazy"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
         {/* 3 Individual Bonus Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           {BONUSES_DATA.map((bonus) => (
@@ -89,6 +50,60 @@ export const BonusesSection: React.FC<BonusesSectionProps> = ({ onCtaClick }) =>
                     </span>
                   </div>
                 </div>
+
+                {/* Imagem Exclusiva do Bônus 01 */}
+                {bonus.id === 1 && (
+                  <div className="mb-4 rounded-xl overflow-hidden border border-slate-200/90 shadow-sm bg-white aspect-[16/11] relative group-hover:shadow-md transition-shadow">
+                    <img
+                      src={bonus1Cover}
+                      alt={bonus.title}
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        if (target.src !== 'https://i.postimg.cc/D0xfjk5v/Imagem-do-Chat-GPT-1-de-out-de-2026-18-42-36.png') {
+                          target.src = 'https://i.postimg.cc/D0xfjk5v/Imagem-do-Chat-GPT-1-de-out-de-2026-18-42-36.png';
+                        }
+                      }}
+                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
+                      loading="lazy"
+                    />
+                  </div>
+                )}
+
+                {/* Imagem Exclusiva do Bônus 02 */}
+                {bonus.id === 2 && (
+                  <div className="mb-4 rounded-xl overflow-hidden border border-slate-200/90 shadow-sm bg-white aspect-[16/11] relative group-hover:shadow-md transition-shadow">
+                    <img
+                      src={bonus2Cover}
+                      alt={bonus.title}
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        if (target.src !== 'https://i.postimg.cc/yNCKT8BX/Imagem-do-Chat-GPT-1-de-out-de-2026-18-45-20.png') {
+                          target.src = 'https://i.postimg.cc/yNCKT8BX/Imagem-do-Chat-GPT-1-de-out-de-2026-18-45-20.png';
+                        }
+                      }}
+                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
+                      loading="lazy"
+                    />
+                  </div>
+                )}
+
+                {/* Imagem Exclusiva do Bônus 03 */}
+                {bonus.id === 3 && (
+                  <div className="mb-4 rounded-xl overflow-hidden border border-slate-200/90 shadow-sm bg-white aspect-[16/11] relative group-hover:shadow-md transition-shadow">
+                    <img
+                      src={bonus3Cover}
+                      alt={bonus.title}
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        if (target.src !== 'https://i.postimg.cc/tCRYhDDk/3c6d71d3-8d92-4e2d-9329-b6494c30e3ff.png') {
+                          target.src = 'https://i.postimg.cc/tCRYhDDk/3c6d71d3-8d92-4e2d-9329-b6494c30e3ff.png';
+                        }
+                      }}
+                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
+                      loading="lazy"
+                    />
+                  </div>
+                )}
 
                 <h3 className="text-xl font-bold text-[#071E4B] mb-2 leading-snug">
                   {bonus.title}

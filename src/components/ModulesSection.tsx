@@ -54,15 +54,15 @@ export const ModulesSection: React.FC<ModulesSectionProps> = ({ onCtaClick }) =>
           {MODULES_DATA.map((module) => (
             <div
               key={module.id}
-              className="bg-[#F5F8FC] rounded-2xl p-6 sm:p-7 border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all flex flex-col justify-between group"
+              className="bg-[#F5F8FC] rounded-2xl p-6 sm:p-7 border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all flex flex-col justify-between group text-center"
             >
               <div>
-                {/* Module Header */}
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 rounded-xl bg-white shadow-xs border border-slate-100 flex items-center justify-center group-hover:scale-105 transition-transform">
+                {/* Module Header Centered */}
+                <div className="flex flex-col items-center justify-center mb-4">
+                  <div className="w-13 h-13 rounded-2xl bg-white shadow-xs border border-slate-100 flex items-center justify-center mb-2.5 group-hover:scale-105 transition-transform text-[#0867D7]">
                     {getModuleIcon(module.icon)}
                   </div>
-                  <span className="text-xs font-extrabold text-[#0867D7] tracking-wider uppercase bg-white px-3 py-1 rounded-full border border-blue-100">
+                  <span className="text-xs font-extrabold text-[#0867D7] tracking-wider uppercase bg-white px-3.5 py-1 rounded-full border border-blue-100 shadow-2xs">
                     MÓDULO {module.numberStr}
                   </span>
                 </div>
@@ -77,15 +77,15 @@ export const ModulesSection: React.FC<ModulesSectionProps> = ({ onCtaClick }) =>
                 </p>
 
                 {/* Module Scales List */}
-                <div className="space-y-1.5 pt-2 border-t border-slate-200/60">
-                  <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block mb-2">
+                <div className="space-y-2 pt-3 border-t border-slate-200/60">
+                  <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block mb-2 text-center">
                     Escalas incluídas neste módulo:
                   </span>
-                  <div className="flex flex-wrap gap-1.5">
+                  <div className="flex flex-wrap items-center justify-center gap-1.5">
                     {module.scales.map((scale, sIdx) => (
                       <span
                         key={sIdx}
-                        className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white border border-slate-200 text-xs font-semibold text-slate-700 shadow-2xs"
+                        className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white border border-slate-200 text-xs font-semibold text-slate-700 shadow-2xs hover:border-[#0867D7]/40 transition-colors"
                       >
                         <span className="w-1.5 h-1.5 rounded-full bg-[#0867D7]" />
                         {scale}
@@ -96,11 +96,10 @@ export const ModulesSection: React.FC<ModulesSectionProps> = ({ onCtaClick }) =>
               </div>
 
               {/* Module bottom count */}
-              <div className="mt-6 pt-4 border-t border-slate-200/60 flex items-center justify-between text-xs text-slate-500 font-medium">
+              <div className="mt-6 pt-4 border-t border-slate-200/60 flex items-center justify-center gap-2 text-xs text-slate-500 font-medium text-center">
                 <span>{module.scales.length} instrumentos completos</span>
-                <span className="text-[#0867D7] font-bold group-hover:translate-x-0.5 transition-transform">
-                  100% Visual →
-                </span>
+                <span className="text-slate-300">•</span>
+                <span className="text-[#0867D7] font-bold">100% Visual</span>
               </div>
             </div>
           ))}

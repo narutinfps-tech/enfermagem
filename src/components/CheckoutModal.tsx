@@ -244,12 +244,21 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
             )}
 
             {/* CTA Button */}
-            <button
-              type="submit"
-              className="w-full py-4 rounded-xl bg-[#16C784] hover:bg-[#13b175] text-white font-extrabold text-base shadow-lg hover:shadow-emerald-200 transition-all cursor-pointer text-center"
-            >
-              LIBERAR MEU ACESSO AGORA ({priceDisplay}) →
-            </button>
+            {isBasic ? (
+              <a
+                href="https://pay.wiapy.com/oLLKgNroKYxb"
+                className="w-full block py-4 rounded-xl bg-[#16C784] hover:bg-[#13b175] text-white font-extrabold text-base shadow-lg hover:shadow-emerald-200 transition-all cursor-pointer text-center"
+              >
+                PAGAR COM PIX OU CARTÃO ({priceDisplay}) →
+              </a>
+            ) : (
+              <a
+                href="https://pay.wiapy.com/65-DgjBmarO"
+                className="w-full block py-4 rounded-xl bg-[#16C784] hover:bg-[#13b175] text-white font-extrabold text-base shadow-lg hover:shadow-emerald-200 transition-all cursor-pointer text-center"
+              >
+                LIBERAR MEU ACESSO AGORA ({priceDisplay}) →
+              </a>
+            )}
 
             {/* Guarantee footer */}
             <div className="flex items-center justify-center gap-2 text-[11px] text-slate-500 font-medium">

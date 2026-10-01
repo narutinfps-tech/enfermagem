@@ -124,13 +124,13 @@ export const OfferSection: React.FC<OfferSectionProps> = ({ onCtaClick }) => {
 
             {/* CTA Button */}
             <div>
-              <button
-                onClick={() => onCtaClick('basic')}
+              <a
+                href="https://pay.wiapy.com/oLLKgNroKYxb"
                 className="w-full inline-flex items-center justify-center gap-2 py-4 px-6 rounded-2xl bg-[#071E4B] hover:bg-[#0867D7] text-white text-sm sm:text-base font-bold shadow-md hover:shadow-lg transition-all cursor-pointer"
               >
                 <span>QUERO O PLANO DE R$ 10</span>
                 <ArrowRight className="w-4 h-4" />
-              </button>
+              </a>
               <div className="mt-3 text-center text-slate-400 text-[11px]">
                 Acesso imediato no e-mail • Pagamento seguro
               </div>
@@ -245,13 +245,13 @@ export const OfferSection: React.FC<OfferSectionProps> = ({ onCtaClick }) => {
 
             {/* Big Green CTA Button */}
             <div>
-              <button
-                onClick={() => onCtaClick('complete')}
+              <a
+                href="https://pay.wiapy.com/65-DgjBmarO"
                 className="w-full group relative inline-flex items-center justify-center gap-2 py-4 px-6 rounded-2xl bg-[#16C784] hover:bg-[#13b175] active:scale-[0.98] text-white text-base sm:text-lg font-black shadow-xl hover:shadow-emerald-200 transition-all cursor-pointer"
               >
                 <span>QUERO O PACOTE COMPLETO (R$ 19,90)</span>
                 <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-              </button>
+              </a>
 
               <div className="mt-4 flex items-center justify-center gap-3 text-slate-400 text-xs">
                 <span className="flex items-center gap-1 font-medium text-slate-600">
