@@ -1,5 +1,7 @@
 import React from 'react';
 import { CheckCircle2, ArrowRight } from 'lucide-react';
+import mockupPng from '../assets/images/atlas_mockup_final.png';
+import mockupWebp from '../assets/images/atlas_mockup_final.webp';
 
 interface HeroProps {
   onCtaClick: () => void;
@@ -28,9 +30,9 @@ export const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
         {/* Hero Product Mockup (100% Preserved Devices, Sheets, Blue Badge, Zero Cuts, Transparent Background) */}
         <div className="w-full max-w-2xl sm:max-w-3xl lg:max-w-4xl mx-auto my-4 sm:my-6 flex justify-center animate-float">
           <picture>
-            <source srcSet="/src/assets/images/atlas_mockup_final.webp" type="image/webp" />
+            <source srcSet={mockupWebp} type="image/webp" />
             <img
-              src="/src/assets/images/atlas_mockup_final.png"
+              src={mockupPng}
               alt="Atlas Visual — 50 Escalas e Escores Clínicos Essenciais"
               className="w-full h-auto max-h-[620px] object-contain drop-shadow-2xl transition-transform duration-500 hover:scale-[1.01]"
               referrerPolicy="no-referrer"

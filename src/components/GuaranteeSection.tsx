@@ -1,5 +1,7 @@
 import React from 'react';
 import { ShieldCheck, ArrowRight, CheckCircle2 } from 'lucide-react';
+import guaranteePng from '../assets/images/guarantee_badge.png';
+import guaranteeWebp from '../assets/images/guarantee_badge.webp';
 
 interface GuaranteeSectionProps {
   onCtaClick: () => void;
@@ -26,9 +28,9 @@ export const GuaranteeSection: React.FC<GuaranteeSectionProps> = ({ onCtaClick }
                 
                 {/* Transparent Guarantee Badge Image */}
                 <picture>
-                  <source srcSet="/src/assets/images/guarantee_badge.webp" type="image/webp" />
+                  <source srcSet={guaranteeWebp} type="image/webp" />
                   <img
-                    src="/src/assets/images/guarantee_badge.png"
+                    src={guaranteePng}
                     alt="Selo Oficial de Garantia 7 Dias Incondicional"
                     className="relative w-56 h-56 sm:w-64 sm:h-64 lg:w-72 lg:h-72 object-contain drop-shadow-2xl transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"

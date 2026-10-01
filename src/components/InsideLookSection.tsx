@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import { SAMPLE_SCALES_PREVIEW } from '../data/scalesData';
 import { ClinicalScale } from '../types';
+import previewImg from '../assets/images/atlas_pages_preview_1790816448516.jpg';
 
 interface InsideLookSectionProps {
   onSelectScale: (scale: ClinicalScale) => void;
@@ -59,7 +60,7 @@ export const InsideLookSection: React.FC<InsideLookSectionProps> = ({
         <div className="mb-14 rounded-2xl overflow-hidden border border-slate-200 shadow-md bg-white">
           <div className="relative">
             <img
-              src="/src/assets/images/atlas_pages_preview_1790816448516.jpg"
+              src={previewImg}
               alt="Amostra da diagramação das fichas do Atlas Visual de Escalas"
               className="w-full h-64 sm:h-80 md:h-96 object-cover"
               referrerPolicy="no-referrer"

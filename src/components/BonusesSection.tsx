@@ -1,6 +1,7 @@
 import React from 'react';
 import { Gift, CheckCircle2, ArrowRight, Sparkles, BookOpen, Layers } from 'lucide-react';
 import { BONUSES_DATA } from '../data/scalesData';
+import bonusMockup from '../assets/images/bonus_bundles_mockup_1790816456210.jpg';
 
 interface BonusesSectionProps {
   onCtaClick: () => void;
@@ -55,7 +56,7 @@ export const BonusesSection: React.FC<BonusesSectionProps> = ({ onCtaClick }) =>
             <div className="lg:col-span-5">
               <div className="rounded-2xl overflow-hidden border-2 border-white/20 shadow-xl bg-slate-800">
                 <img
-                  src="/src/assets/images/bonus_bundles_mockup_1790816456210.jpg"
+                  src={bonusMockup}
                   alt="3 Bônus Exclusivos do Atlas Visual de Escalas Clínicas"
                   className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500"
                   referrerPolicy="no-referrer"
