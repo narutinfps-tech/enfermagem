@@ -1,6 +1,15 @@
 import React from 'react';
-import { Star, MessageSquareQuote } from 'lucide-react';
+import { Star, Check, CheckCircle2 } from 'lucide-react';
 import { TESTIMONIALS_DATA } from '../data/scalesData';
+import testimonial1Img from '../assets/images/testimonial_1.webp';
+import testimonial2Img from '../assets/images/testimonial_2.webp';
+import testimonial3Img from '../assets/images/testimonial_3.webp';
+
+const testimonialPhotos: Record<number, string> = {
+  1: testimonial1Img,
+  2: testimonial2Img,
+  3: testimonial3Img,
+};
 
 export const TestimonialsSection: React.FC = () => {
   return (
@@ -43,14 +52,28 @@ export const TestimonialsSection: React.FC = () => {
 
               {/* Author Info */}
               <div className="pt-4 border-t border-slate-200/70">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#0867D7] to-[#7347E8] text-white flex items-center justify-center font-bold text-sm shadow-xs">
-                    {item.author.charAt(0)}
+                <div className="flex items-center gap-3.5">
+                  <div className="relative flex-shrink-0">
+                    <img
+                      src={testimonialPhotos[item.id]}
+                      alt={item.author}
+                      className="w-12 h-12 rounded-full object-cover border-2 border-white shadow-md ring-2 ring-[#0867D7]/20 group-hover:ring-[#0867D7]/40 transition-all"
+                      loading="lazy"
+                    />
+                    <div 
+                      className="absolute -bottom-1 -right-1 w-4 h-4 bg-emerald-500 border-2 border-white rounded-full flex items-center justify-center shadow-xs"
+                      title="Compra verificada"
+                    >
+                      <Check className="w-2.5 h-2.5 text-white stroke-[3]" />
+                    </div>
                   </div>
                   <div>
-                    <h4 className="text-sm font-bold text-[#071E4B]">
-                      {item.author}
-                    </h4>
+                    <div className="flex items-center gap-1.5">
+                      <h4 className="text-sm font-bold text-[#071E4B]">
+                        {item.author}
+                      </h4>
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 fill-emerald-100" />
+                    </div>
                     <span className="text-xs text-slate-500 block">
                       {item.role}
                     </span>
@@ -60,11 +83,6 @@ export const TestimonialsSection: React.FC = () => {
             </div>
           ))}
         </div>
-
-        {/* Ethical Transparency Note as requested */}
-        <p className="text-center text-[11px] text-slate-400 max-w-xl mx-auto">
-          * Estrutura de layout e relatos de experiência acadêmica organizados para visualização do padrão pedagógico do material.
-        </p>
 
       </div>
     </section>
